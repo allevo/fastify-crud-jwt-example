@@ -1,13 +1,12 @@
 'use strict'
 
 export default class AuthService {
-  constructor(credentialCollection, jwtLib) {
+  constructor (credentialCollection, jwtLib) {
     this.credentialCollection = credentialCollection
     this.jwtLib = jwtLib
   }
 
-  async login({ username, password}) {
-
+  async login ({ username, password }) {
     const doc = await this.credentialCollection.findOne({ username, password })
 
     if (!doc) {
@@ -21,5 +20,11 @@ export default class AuthService {
     return {
       token
     }
+  }
+
+  isAllowed (log, payload, routeConfig) {
+    const { role } = payload
+    log.info({ actualRole: role, allowedRoles: routeConfig.rolesAllowed }, 'check the user role')
+    return (routeConfig.rolesAllowed || []).includes(role)
   }
 }

@@ -1,10 +1,11 @@
 {
-  "name": "5-webservier-2",
+  "name": "fastify-crud-jwt-example",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "pretest": "standard",
+    "test": "tap",
     "start": "node index.mjs"
   },
   "keywords": [],
@@ -14,6 +15,12 @@
     "@fastify/jwt": "^6.3.2",
     "@fastify/mongodb": "^5",
     "fastify": "^4",
+    "fastify-plugin": "^4.3.0",
     "mississippi": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/tap": "^15.0.7",
+    "standard": "^17.0.0",
+    "tap": "^16.3.0"
   }
 }
